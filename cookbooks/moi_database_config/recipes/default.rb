@@ -8,9 +8,6 @@
 if ['solo'].include?(node[:instance_role])
   # for each application
   node.engineyard.apps.each do |app|
-    # skip if there are no attributes for this app
-    next if attributes.nil?
-
     log_msg = "MOI - Replacing database.yml for #{app.name}"
 
     ey_cloud_report "MOI Database Config Update" do
