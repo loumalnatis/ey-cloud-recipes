@@ -1,0 +1,25 @@
+<%= @environment %>:
+  adapter:   <%= @adapter %>
+  database:  '<%= @database %>'
+  username:  '<%= @username %>'
+  password:  '<%= @password %>'
+  host:      '<%= @host %>'
+  reconnect: true
+
+core_prod:
+  adapter: mysql2
+  database: core_prod
+  host: 64.64.193.8 # Since this is outside the MOI network on EngineYard we need to punch back inside
+  username: dmaudit
+  password: maln@tis
+  pool: 5
+  timeout: 5000
+
+acct_prod:
+  adapter: mysql2
+  database: acct_prod
+  username: dmaudit
+  password: maln@tis
+  host: 64.64.193.8 # Since this is outside the MOI network on EngineYard we need to punch back inside
+  pool: 5
+  timeout: 5000
