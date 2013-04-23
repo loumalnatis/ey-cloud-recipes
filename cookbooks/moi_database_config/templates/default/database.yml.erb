@@ -1,25 +1,37 @@
+  <%%=
+  def determine_adapter
+    if Gem.loaded_specs.key?("mysql2")
+      "mysql2"
+    else
+      "mysql"
+    end
+  rescue
+    "mysql2"
+  end
+  %>
+
 <%= @environment %>:
-  adapter:   <%= @adapter %>
-  database:  '<%= @database %>'
-  username:  '<%= @username %>'
-  password:  '<%= @password %>'
-  host:      '<%= @host %>'
+  adapter:   <%%= determine_adapter %>
+  database:  <%= @database %>
+  username:  <%= @username %>
+  password:  <%= @password %>
+  host:      <%= @host %>
   reconnect: true
 
 core_prod:
-  adapter: mysql2
+  adapter: <%%= determine_adapter %>
   database: core_prod
-  host: 64.64.193.8 # Since this is outside the MOI network on EngineYard we need to punch back inside
+  host: 64.64.193.8 # Since this app runs outside the MOI network on EngineYard we need to punch back inside
   username: dmaudit
   password: maln@tis
   pool: 5
   timeout: 5000
 
 acct_prod:
-  adapter: mysql2
+  adapter: <%%= determine_adapter %>
   database: acct_prod
   username: dmaudit
   password: maln@tis
-  host: 64.64.193.8 # Since this is outside the MOI network on EngineYard we need to punch back inside
+  host: 64.64.193.8 # Since this app runs outside the MOI network on EngineYard we need to punch back inside
   pool: 5
   timeout: 5000

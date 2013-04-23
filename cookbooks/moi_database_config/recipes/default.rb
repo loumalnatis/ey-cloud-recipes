@@ -20,15 +20,14 @@ if ['solo'].include?(node[:instance_role])
     template "/data/#{app.name}/shared/config/database.yml" do
       owner node[:owner_name]
       group node[:owner_name]
-      backup true
+      backup false
       mode 0644
       source 'database.yml.erb'
       variables({
                     # These are the variables for the main prod database, everything else
                     # is hardcoded in the erb file itself.
                     :environment => node[:environment][:framework_env],
-                    :adapter => "mysql2",
-                    :database => node[:environment][:apps].first[:database_name],
+                    :database => app.name,
                     :username => node[:users].first[:username],
                     :password => node[:users].first[:password],
                     :host => node[:db_host]
