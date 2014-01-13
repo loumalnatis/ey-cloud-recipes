@@ -142,4 +142,5 @@
   # postgresql9_pg_freespacemap "postgres"
 #end
 
-require_recipe "moi_database_config"
+#require_recipe "moi_database_config"
+require_recipe "delayed_job"
